@@ -1,0 +1,281 @@
+<style>
+	.order1{
+
+background-color:#F5F5F5;
+padding:10px;
+color:#0080C0;
+}
+
+	.odate {
+		background-color: #676CFB;
+		color: #ffff;
+		padding: 10px;
+		text-align: center;
+	}
+
+	#content {
+		margin: 40px;
+		min-height: 480px;
+	}
+
+	th {
+		padding: 8px;
+		font-size: 12px;
+	}
+
+	td {
+		padding: 8px;
+		font-size: 12px;
+	}
+
+	tr:nth-child(even) {
+		background-color: #EFEFEF;
+	}
+
+	p {
+		padding-top: 10px;
+		font-size: 12px;
+	}
+
+	.odetails
+{
+  border: 1px solid #E2E1DD;
+   height: auto;
+   float: left;
+  // padding: 5px;
+   }
+</style>
+<div>
+
+
+	<div id="content-area" role="main">
+		<div class="col-sm-12">
+		<!--<div class="col-sm-2">
+			<ul class="nav nav-navbar nav1">
+				<li><a href="#/home">Dashboard</a></li>
+				<li><a href="#/orderstatus">Orders</a></li>
+				<li><a href="#/invoicesearch">Invoices</a></li>
+				<li><a href="#/claimssearch">Claims</a></li>
+			</ul>
+		</div> -->
+		<!-- <button type="button" onclick="printJS($('#invoicedetailstbl'), 'image', 'maxWidth:800px'	)">
+				Print Form
+			 </button> -->
+			 <!-- <button type="button" ng-click="printJS()">
+				Print Form
+			 </button> -->
+             		 
+		<div class="col-sm-2">
+
+			<nav class="navbar navbar-custom sidebar" role="navigation">
+				<div>
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+						<ul class="nav nav-navbar nav1">
+							<li><a href="#/home">Dashboard</a></li>
+							<li><a href="#/orderstatus">Orders</a></li>
+							<li class="active"><a href="#/invoicesearch">Invoices</a></li>
+							<li><a href="#/claimssearch">Claims</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="col-sm-10" style="overflow:auto">
+<button id="cmd">Generate PDF</button>	
+<div id="editor"></div>
+			<div class="odetails" id="content">
+				<div class="col-sm-12 order1">
+					<label>Invoice Details</label>
+				</div>
+
+				<div class="col-sm-12">
+					<div class="col-sm-6">
+						<div class="col-sm-12">
+							<label>{{invoiceDetails.dealerDetails.dealerName}}</label>
+						</div>
+						<div class="col-sm-12">
+							<label>Remit To : </label>{{invoiceDetails.remitTo}}
+						</div>
+						<div class="col-sm-12">
+							<label>Lock Box Address : </label> {{invoiceDetails.lockBoxAddress}}
+						</div>
+						<div class="col-sm-12">
+							<label>Phone : </label> {{invoiceDetails.phone}}
+						</div>
+					</div>
+
+
+					<div class="col-sm-6">
+						<div class="col-sm-12">
+							<label>Date :</label> {{invoiceDetails.invoiceDate}}
+						</div>
+						<div class="col-sm-12">
+							<label>Order # : </label> {{invoiceDetails.order.orderId}}
+						</div>
+						<div class="col-sm-12">
+							<label>Invoice # :</label> {{invoiceDetails.invoiceNo}}
+						</div>
+						<div class="col-sm-12">
+							<label>B/L # : </label> {{invoiceDetails.blNum}}
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<div class="col-sm-12">
+
+						<div class="col-sm-12">
+							<label>Wire Transfer : </label> {{invoiceDetails.wireTransfer}}
+						</div>
+						<div class="col-sm-12">
+							<label>ACH Trasnfers :</label> {{invoiceDetails.ACH}}
+						</div>
+						<div class="col-sm-12">
+							<label>SWIFT BIC : </label> {{invoiceDetails.swiftBIC}}
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="col-sm-12">
+					<div class="col-sm-6">
+
+						<div class="col-sm-12">
+							<div class="col-sm-4"><label>Sold To :</label></div>
+							<div class="col-sm-8">{{invoiceDetails.order.SoldTo[0].mailingName}}</br>
+								{{invoiceDetails.order.SoldTo[0].addressline}}</br>{{invoiceDetails.order.SoldTo[0].state}} {{invoiceDetails.order.SoldTo[0].zipcode}}
+								{{invoiceDetails.order.SoldTo[0].country}}</div>
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>Invoice Code :</label></div>
+							<div class="col-sm-8"> {{invoiceDetails.invoiceCode}}</div> -->
+							<label>Invoice Code : </label> {{invoiceDetails.invoiceCode}}
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>Customer No : </label></div>
+							<div class="col-sm-8"> {{invoiceDetails.customerNum}}</div> -->
+							<label>Customer No : </label>{{invoiceDetails.customerNum}}
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>FOB :</label> </div>
+							<div class="col-sm-8"> {{invoiceDetails.FOB}}</div> -->
+							<label>FOB :</label> {{invoiceDetails.FOB}}
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>Customer order :</label></div>
+							<div class="col-sm-8"> {{invoiceDetails.customerOrder}}</div> -->
+							<label>Customer order:</label> {{invoiceDetails.customerOrder}}
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>CQR No : </label></div>
+							<div class="col-sm-8"> {{invoiceDetails.CQR}}</div> -->
+							<label>CQR No:</label> {{invoiceDetails.CQR}}
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>Sales Person : </label> </div>
+							<div class="col-sm-8"> {{invoiceDetails.salesPerson}}</div> -->
+							<label>Sales Person :</label> {{invoiceDetails.salesPerson}}
+						</div>
+
+					</div>
+
+
+					<div class="col-sm-6">
+						<div class="col-sm-12">
+							<div class="col-sm-4"><label>Ship To:</label></div>
+							<div class="col-sm-8">{{invoiceDetails.order.ShipTo[0].mailingName}}</br>
+								{{invoiceDetails.order.ShipTo[0].addressline}}</br>{{invoiceDetails.order.ShipTo[0].state}} {{invoiceDetails.order.ShipTo[0].zipcode}}
+								{{invoiceDetails.order.ShipTo[0].country}}</div>
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>Carrier : </label></div>
+							<div class="col-sm-8">{{invoiceDetails.carrier}}</div> -->
+							<label>Carrier :</label> {{invoiceDetails.carrier}}
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>Freight Type :</label></div>
+							<div class="col-sm-8"> {{invoiceDetails.freightType}}</div> -->
+							<label>Freight Type :</label> {{invoiceDetails.freightType}}
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>Terms : </label></div>
+							<div class="col-sm-8"> {{invoiceDetails.terms}}</div> -->
+							<label>Terms :</label> {{invoiceDetails.terms}}
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>Tax Exemption No:</label></div>
+							<div class="col-sm-8"> {{invoiceDetails.taxExmpNum}}</div> -->
+							<label>Tax Exemption No:</label> {{invoiceDetails.taxExmpNum}}
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>Job Name :</label></div>
+							<div class="col-sm-8"> {{invoiceDetails.jobName}}</div> -->
+							<label>Job Name : </label>{{invoiceDetails.jobName}}
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>TIN# :</label></div>
+							<div class="col-sm-8"> {{invoiceDetails.tinNum}}</div> -->
+							<label>TIN#: </label>{{invoiceDetails.tinNum}}
+						</div>
+						<div class="col-sm-12">
+							<!-- <div class="col-sm-4"><label>BUS# :</label></div>
+							<div class="col-sm-8"> {{invoiceDetails.busNum}}</div> -->
+							<label>BUS# :</label> {{invoiceDetails.busNum}}
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 table1" id="content">
+					<table width="100%" class="table-bordered table-responsive order-items footable table">
+						<thead class="odate">
+							<th> Image </th>
+								
+							<th data-toggle="true">Line #</th>
+							<th>Item #</th>
+							<th data-hide="phone"> Description</th>
+							<th> Ship Date </th>
+							<th data-hide="phone"> Lot #</th>
+							<!--<th data-hide="phone"> Box/Rolls</th>-->
+							<th> Quantity</th>
+							<th> Price (USD)</th>
+							<th> Amount (USD)</th>
+						</thead>
+						<tr ng-repeat="product in productDetails" ng-init>
+							<td style="max-width: 50px">
+								
+							<img class="img-thumbnail" src="images/{{product.productId}}.jpg"></img>
+											
+							</td>
+							<td>{{product.lineNumber}}</td>
+							<td>{{product.productId}}</td>
+							<td>{{product.product_response[0].productName}}</td>
+							<td>{{product.shipDate}}</td>
+							<td>{{product.lot}}</td>
+							<!--<td>Sq Ft</td>-->
+							<td>{{product.quantity |number:2}}</td>
+							<td>{{product.product_response[0].unitPrice}}</td>
+							<td>{{product.totalPrice |number:2}}</td>
+							
+						</tr>
+						<tr>
+							<td colspan="6"></td>
+							
+							<td>{{invoiceDetails.totalQuantity |number:2}}</td>
+							<td></td>
+							<td>{{invoiceDetails.total |number:2}}</td>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+

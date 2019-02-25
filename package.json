@@ -1,0 +1,35 @@
+{
+  "name": "interfacepocnew",
+  "version": "1.0.0",
+  "description": "Interface POC using Mean Stack",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha test"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cors": "*",
+    "express": "^4.13.4",
+    "express-session": "^1.15.6",
+    "moment": "^2.24.0",
+    "mongodb": "^2.2.9"
+  },
+  "author": "Interface POC Team",
+  "license": "ISC",
+  "devDependencies": {
+    "angular-footable": "0.0.3",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "express-swagger-generator": "^1.0.4",
+    "mocha": "^3.5.3",
+    "mongomock": "^0.1.2",
+    "proxyquire": "^1.8.0",
+    "q": "^1.5.0",
+    "sinon": "^3.3.0",
+    "supertest": "^3.0.0"
+  },
+  "directories": {
+    "test": "test"
+  }
+}

@@ -1,0 +1,144 @@
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+
+<style>
+.bgstyle
+{
+background:#EFEFEF;
+width:100%;
+padding: 10px;
+padding-bottom: 5px;
+}
+</style>
+<!--<script>
+		jQuery(function($){
+		jQuery('#orderstable,#invoicestable,#claimstable').footable();
+	});
+</script> -->
+<div>
+<div id="content-area" role="main">
+<div class="col-sm-12">
+<!--<div class="col-sm-2">
+<ul class="nav nav-navbar nav1">
+<li class="active"><a href="#/home">Dashboard</a></li>
+<li><a href="#/orderstatus">Orders</a></li>
+<li><a href="#/invoicesearch">Invoices</a></li>
+<li><a href="#/claimssearch">Claims</a></li>
+</ul>
+</div> -->
+
+<div class="col-sm-2">
+				
+<nav class="navbar navbar-custom sidebar" role="navigation"> 
+    <div>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>      
+    </div>
+    <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+      <ul class="nav nav-navbar nav1">
+        <li class="active"><a href="#/home">Dashboard</a></li>
+		<li><a href="#/orderstatus">Orders</a></li>
+		<li><a href="#/invoicesearch">Invoices</a></li>
+		<li><a href="#/claimssearch">Claims</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div> 
+
+<div class="col-sm-10">
+<div class="col-sm-12">
+<div class="bgstyle">
+<label>Last 5 Orders </label>
+</div>
+	 <div ng-show="orders"> 
+	<div class="table1">
+	<table width="100%" border="0" data-filter="#filter" class="table-bordered table-responsive order-items footable table">
+		<thead>
+			<th data-toggle="true">Order #</th>
+			<th>Type</th>
+			<th>Order Date</th>
+			<th data-hide="phone">PO #</th>
+			<th data-hide="phone">Job/Project Name</th>
+			<th>Status</th>
+		</thead>
+		<tbody>
+		<tr ng-repeat="o in orders | orderBy:'-orderDate' | limitTo:'5'">
+			<td><a href ng-click="selectedOrder(o.orderId)">{{o.orderId}}</a></td>
+				
+				<td>{{o.orderType}}</td>
+				<td>{{o.orderDate}}</td>
+				<td>{{o.PoNumber}}</td>
+				<td>{{o.projectName}}</td>
+				<td>{{o.status}}</td>
+			</tr>
+		</tbody>
+
+		</table>
+</div>
+	
+	</div>
+</div>
+<div class="col-sm-12" style="padding-top:20px">
+<div class="bgstyle">
+<label>Last 5 Invoices </label>
+</div>
+<div class="table1">
+<table id="invoicestable" width="100%" class="table-bordered table-responsive order-items footable table">
+	<thead class="thead">
+		<th data-toggle="true">Invoice #</th>
+		<th>Invoice Type</th>
+		<th data-hide="phone">Order #</th>
+		<th>Invoice Date</th>
+		<th data-hide="phone">B/L #</th>
+		<th>Customer #</th>
+	</thead>
+	<tr ng-repeat="o in orders | orderBy:'-requestedDate' | limitTo:'5'">
+		<td><a href="#/invoicedetails/{{o.invoiceNo}}">{{o.invoiceNo}}</a></td>
+		<td>{{o.order_response[0].invoiceType}}</td>
+		<td>{{o.orderId}}</td>
+		<td>{{o.requestedDate}}</td>
+		<td>{{o.order_response[0].blNum}}</td>
+		<td>{{o.customerId}}</td>
+	</tr>
+</table>
+</div>
+</div>
+<div class="col-sm-12" style="padding-top:20px">
+<div class="bgstyle">
+<label>Last 5 Claims </label>
+</div>
+<div class="table1">
+<table id="claimstable" width="100%" class="table-bordered table-responsive order-items footable table">
+	<thead class="thead">
+		<th>Order #</th>
+		<th>Claim Date</th>
+		<th>Case Status</th>
+		<th>Customer #</th>
+	</thead>
+	<tbody>
+     <!-- use our custom filter to only display customers from the orderTypes selected-->
+      <tr ng-repeat="o in data|orderBy:'-DateUpdated' | limitTo:'5'">
+          <td><a ng-click="selected(o.orderId)">{{o.orderId}}</td></href>
+			<td>{{o.DateUpdated}}</td>
+			<td>{{o.case_status_ref[0].Description}}</td>
+			<td>{{o.CustomerNumber}}</td>
+      </tr>
+	</tbody>
+	</table>
+	</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<script>
+ jQuery('.footable').trigger('footable_redraw');
+	</script>
+
